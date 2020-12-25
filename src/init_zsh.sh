@@ -12,10 +12,15 @@ install() {
 		echo "[SETTING] :: install oh-my-zsh"
 		if ! command_exists curl; then
 			echo "[SETTING] :: install curl"
-			$1 apt install -y curl fi sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" fi }
+			$1 apt install -y curl
+		fi
+		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	fi
+}
 
 config() {
 	cp ./res/.zshrc ~
+	source ~/.zshrc
 }
 
 main() {
