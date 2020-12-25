@@ -1,3 +1,6 @@
+C="\e[1;31m"
+E="\e[0m"
+
 cp ~/.zshrc ./res
 cp ~/.vimrc ./res
 cp ~/.tmux.conf ./res
@@ -8,4 +11,4 @@ git add .
 git commit -m "update : $(date)"
 git push
 
-echo "[SETTING] :: done update"
+echo -e "$C[SETTING] :: done update$E"
