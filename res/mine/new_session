@@ -1,0 +1,3 @@
+new-session
+rename-session "temp#S"
+display-message "#S"
