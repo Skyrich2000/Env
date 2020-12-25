@@ -3,10 +3,8 @@ E="\e[0m"
 
 echo -e "$C[DOCKER SETTING] :: apt update$E"
 apt update
-echo -e "$C[DOCKER SETTING] :: install git$E"
-apt install -y git
-echo -e "$C[DOCKER SETTING] :: clone$E"
-git clone https://github.com/skyrich2000/env
-cd /env
-echo -e "$C[DOCKER SETTING] :: run docker setting$E"
-./docker
+echo -e "$C[DOCKER SETTING] :: install curl$E"
+apt install -y curl
+echo -e "$C[DOCKER SETTING] :: run shell$E"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/skyrich2000/env/master/installdocker.sh)"
+
