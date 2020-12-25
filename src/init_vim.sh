@@ -20,7 +20,7 @@ install() {
 
 config() {
 	cp ./res/.vimrc ~
-	echo "[SETTING] :: do :Pluginstall"
+	echo "[SETTING] :: do :PlugInstall"
 }
 
 main() {

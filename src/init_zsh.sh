@@ -9,27 +9,28 @@ install() {
 	fi
 
 	if ! [ -d "$ZSH" ]; then
-		echo "[SETTING] :: install oh-my-zsh"
 		if ! command_exists curl; then
 			echo "[SETTING] :: install curl"
 			$1 apt install -y curl
 		fi
+		echo "[SETTING] :: install language pack"
+		$1 apt install -y language-pack-en
+		echo "[SETTING] :: install oh-my-zsh"
 		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	fi
 }
 
 config() {
 	cp ./res/.zshrc ~
-	source ~/.zshrc
 }
 
 main() {
 	if [ "$1" == "docker" ]; then
+		config
 		install
-		config
 	elif [ "$1" == "mine" ]; then
-		install sudo
 		config
+		install sudo
 	elif [ "$1" == "cluster" ]; then
 		config
 	fi
