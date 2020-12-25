@@ -16,7 +16,7 @@ install() {
 		echo "[SETTING] :: install language pack"
 		$1 apt install -y language-pack-en
 		echo "[SETTING] :: install oh-my-zsh"
-		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --keep-zshrc
 	fi
 }
 
