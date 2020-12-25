@@ -8,7 +8,7 @@ install() {
 		$1 apt install -y vim
 	fi
 	
-	if ! [ -d "~/.vim/autoload" ]; then
+	if ! [ -e "~/.vim/autoload/plug.vim" ]; then
 		echo "[SETTING] :: install vim plugin"
 		if ! command_exists curl; then
 			echo "Install curl"
@@ -34,7 +34,7 @@ main() {
 		config
 	fi
 
-	echo "[SETTING] :: vim done"
+	echo "[SETTING] :: done vim"
 }
 
 main $1

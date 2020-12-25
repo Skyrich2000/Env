@@ -29,7 +29,7 @@ main() {
 		config
 	fi
 
-	echo "[SETTING] :: tmux done"
+	echo "[SETTING] :: done tmux"
 }
 
 main $1

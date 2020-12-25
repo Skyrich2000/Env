@@ -7,4 +7,5 @@ cp -rf ~/.tmux/mine ./res
 git add .
 git commit -m "update : $(date)"
 git push
+
 echo "[SETTING] :: done update"
