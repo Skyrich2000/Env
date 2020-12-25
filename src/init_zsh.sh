@@ -4,17 +4,18 @@ command_exists() {
 
 install() {
 	if ! command_exists zsh; then
-		echo "Install zsh"
+		echo "[SETTING] :: install zsh"
 		$1 apt install -y zsh
 	fi
 
 	if ! [ -d "$ZSH" ]; then
-		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-	fi
-}
+		echo "[SETTING] :: install oh-my-zsh"
+		if ! command_exists curl; then
+			echo "[SETTING] :: install curl"
+			$1 apt install -y curl fi sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" fi }
 
 config() {
-	cp ../res/.zshrc ~
+	cp ./res/.zshrc ~
 }
 
 main() {
@@ -27,6 +28,8 @@ main() {
 	elif [ "$1" == "cluster" ]; then
 		config
 	fi
+
+	echo "[SETTING] :: done zsh"
 }
 
 main $1

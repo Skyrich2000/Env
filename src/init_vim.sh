@@ -4,13 +4,23 @@ command_exists() {
 
 install() {
 	if ! command_exists vim; then
-		echo "Install vim"
+		echo "[SETTING] :: install vim"
 		$1 apt install -y vim
-	fi	
+	fi
+	
+	if ! [ -d "~/.vim/autoload" ]; then
+		echo "[SETTING] :: install vim plugin"
+		if ! command_exists curl; then
+			echo "Install curl"
+			$1 apt install -y curl
+		fi
+		curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	fi
 }
 
 config() {
-	cp ../res/.vimrc ~
+	cp ./res/.vimrc ~
+	echo "[SETTING] :: do :Pluginstall"
 }
 
 main() {
@@ -23,6 +33,8 @@ main() {
 	elif [ "$1" == "cluster" ]; then
 		config
 	fi
+
+	echo "[SETTING] :: vim done"
 }
 
 main $1

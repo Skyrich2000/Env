@@ -4,16 +4,17 @@ command_exists() {
 
 install() {
 	if ! command_exists tmux; then
-		echo "Install tmux"
+		echo "[SETTING] :: install tmux"
 		$1 apt install -y tmux
 	fi
 }
 
 config() {
-	cp ../res/.zshrc ~
-	cp ../res/.tmux.conf ~
-	cp ../res/.tmux.reset.conf ~
-	cp -rf ./res/mine ~/.tmuxe
+	cp ./res/.tmux.conf ~
+	cp ./res/.tmux.reset.conf ~
+	mkdir ~/.tmux >/dev/null 2>&1
+	cp -rf ./res/mine ~/.tmux
+	tmux source-file ~/.tmux.conf
 }
 
 main() {
@@ -27,6 +28,8 @@ main() {
 	elif [ "$1" == "cluster" ]; then
 		config
 	fi
+
+	echo "[SETTING] :: tmux done"
 }
 
 main $1
