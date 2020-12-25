@@ -1,17 +1,20 @@
+C="\e[1;31m"
+E="\e[0m"
+
 command_exists() {
 	command -v "$@" >/dev/null 2>&1
 }
 
 install() {
 	if ! command_exists vim; then
-		echo "[SETTING] :: install vim"
+		echo -e "$C[SETTING] :: install vim$E"
 		$1 apt install -y vim
 	fi
 	
 	if ! [ -e "$HOME/.vim/autoload/plug.vim" ]; then
-		echo "[SETTING] :: install vim plugin"
+		echo -e "$C[SETTING] :: install vim plugin$E"
 		if ! command_exists curl; then
-			echo "Install curl"
+			echo -e "Install curl"
 			$1 apt install -y curl
 		fi
 		curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -20,7 +23,7 @@ install() {
 
 config() {
 	cp ./res/.vimrc ~
-	echo "[SETTING] :: do :PlugInstall"
+	echo -e "$C[SETTING] :: do :PlugInstall$E"
 }
 
 main() {
@@ -34,7 +37,7 @@ main() {
 		config
 	fi
 
-	echo "[SETTING] :: done vim"
+	echo -e "$C[SETTING] :: done vim$E"
 }
 
 main $1

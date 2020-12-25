@@ -1,10 +1,13 @@
+C="\e[1;31m"
+E="\e[0m"
+
 command_exists() {
 	command -v "$@" >/dev/null 2>&1
 }
 
 install() {
 	if ! command_exists tmux; then
-		echo "[SETTING] :: install tmux"
+		echo -e "$C[SETTING] :: install tmux$E"
 		$1 apt install -y tmux
 	fi
 }
@@ -21,7 +24,7 @@ main() {
 	if [ "$1" == "docker" ]; then
 		#install
 		#config
-		echo "recommand not to install tmux in docker container"
+		echo -e "$C[SETTING] :: recommand not to install tmux in docker container$E"
 	elif [ "$1" == "mine" ]; then
 		install sudo
 		config
@@ -29,7 +32,7 @@ main() {
 		config
 	fi
 
-	echo "[SETTING] :: done tmux"
+	echo -e "$C[SETTING] :: done tmux$E"
 }
 
 main $1
