@@ -1,10 +1,17 @@
+mkdir /myenv
+echo '
 C="\e[1;31m"
 E="\e[0m"
 
 echo -e "$C[DOCKER SETTING] :: apt update$E"
 apt update
-echo -e "$C[DOCKER SETTING] :: install curl$E"
-apt install -y curl
-echo -e "$C[DOCKER SETTING] :: run shell$E"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/skyrich2000/env/master/installdocker.sh)"
-
+echo -e "$C[DOCKER SETTING] :: install git$E"
+apt install -y git
+echo -e "$C[DOCKER SETTING] :: clone git$E"
+cd /myenv
+git clone https://github.com/skyrich2000/env apply
+cd ./apply
+echo -e "$C[DOCKER SETTING] :: start docker setting$E"
+./docker.sh
+' > /myenv/install_my_env.sh
+bash /myenv/install_my_env.sh
