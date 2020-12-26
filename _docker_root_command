@@ -1,4 +1,3 @@
-mkdir /myenv
 echo '
 C="\e[1;31m"
 E="\e[0m"
@@ -9,7 +8,7 @@ echo -e "$C[DOCKER SETTING] :: install sudo$E"
 apt install -y sudo
 echo -e "$C[DOCKER SETTING] :: make user$E"
 useradd -m dhuni && echo "dhuni:dhuni" | chpasswd && adduser dhuni sudo
-echo 'dhuni ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+echo "dhuni ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 echo -e "$C[DOCKER SETTING] :: done for root!$E"
 rm ./install_my_env_root.sh
 ' > install_my_env_root.sh
