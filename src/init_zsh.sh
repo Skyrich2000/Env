@@ -30,7 +30,7 @@ config() {
 main() {
 	if [ "$1" == "docker" ]; then
 		config
-		install
+		install sudo
 	elif [ "$1" == "mine" ]; then
 		config
 		install sudo
