@@ -102,6 +102,8 @@ alias mmt="gcc -Wall -Werror -Wextra"
 alias cdd="cd ~/Dev"
 alias cdp="cd ~/Dev/Projects"
 alias dk="docker"
+alias di="docker exec -it"
+alias diu="docker exec -it -u 1000"
 alias tm="tmux a #"
 
 # change to windows
