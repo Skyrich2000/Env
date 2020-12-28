@@ -1,20 +1,18 @@
-path="$HOME/.tmux/mine"
-space="="
-del=":"
+#!/bin/bash
+source ~/.tmux/mine/util.sh
 
-curr_name=$(tmux list-session | grep attached | cut -d ':' -f 1)
-curr=$(cat $path/sessions | grep "$curr_name" | cut -d "$del" -f 1)
-end=$(cat $path/sessions | tail -n 1 | cut -d "$del" -f 1)
-next=$(expr $curr + 1)
+curr=$(get_curr_index)
+end=$my_session_num
+next=$((curr + 1))
 if [ $curr -eq $end ]; then
 	next="1"
 fi
-result=$(cat $path/sessions | cut -d "$del" -f 1 | grep $next -w)
+result=$(get_name $next)
 
 move_session() {
-	other=$(cat $path/sessions | grep $1 -w -v)
-	new=$(cat $path/sessions | grep $1 -w | sed "s/$1$del/$2$del/g")
-	echo "${other}\n${new}" > $path/sessions
+	set_index $(get_name $1) $2
+	echo "$1 to $2"
+	echo "$my_sessions"
 }
 
 swap_session() {
@@ -25,23 +23,21 @@ swap_session() {
 
 if [ -z "$result" ]; then
 	move_session $curr $next
-#	echo "move $curr to $next"
+	echo "move $curr to $next"
 else
 	if [ $curr -eq $end ]; then
-		list=$(cat $path/sessions | cut -d "$del" -f 1)
-		for v in $list
+		IFS=$'\n'
+		for v in $my_sessions
 		do
 			swap_session $v $end
-#			echo "swap $v to $end"
+			echo "swap $v to $end"
 		done
 	else
 		swap_session $curr $next
-#		echo "swap $curr to $next"
+		echo "swap $curr to $next"
 	fi
 
 fi
 
-$path/sync_session.sh	
-curr=$(cat $path/sessions | grep "$curr_name" | cut -d "$del" -f 1)
-tmux display-message "[$curr] #S"
-
+save
+display_curr

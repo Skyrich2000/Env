@@ -1,41 +1,43 @@
-path="$HOME/.tmux/mine"
-space='='
-del=':'
+#!/bin/bash
+source ~/.tmux/mine/util.sh
 
-count=0
+error=0
 output=""
-names=$(tmux list-sessions | cut -d ':' -f 1 | sed "s/ /$space/g")
-for v in $names
+index_list=$(seq $tmux_session_num)
+new_session_list=()
+
+IFS=$'\n'
+for name in $tmux_sessions
 do
-	new=$(cat $path/sessions | sed "s/ /$space/g" | grep $v) # find same name
-	if [ -z "$new" ]; then
+	index=$(get_index "$name")
+	if [ -z "$index" ]; then # if new session
+		new_session_list+=($name)
 		continue
 	fi
-	count=$((count + 1))
-	new=$(echo $new | sed "s/$space/ /g")
-	if [ -z "$output" ]; then
-		output=$new
-	else
-		output=$output'\n'$new
-	fi
-	names=$(echo "$names" | grep $v -v) # remove names
-done	
-
-for v in $names
-do
-	count=$((count + 1))
-	while [ -n "$(cat $path/sessions | grep $count -w)" ]
-	do
-		count=$((count + 1))
-	done
-	new="$count$del$v"
-	new=$(echo $new | sed "s/$space/ /g")
-	if [ -z "$output" ]; then
-		output=$new
-	else
-		output=$output'\n'$new
-	fi
+	output=$output$enter$del$index$del$name$del
+	index_list=$(echo "$index_list" | grep $index -v -w) # remove index
 done
 
-output=$(echo $output | sort)
-echo "$output" > $path/sessions
+for name in ${new_session_list[@]}
+do
+	index=$(echo "$index_list" | head -n 1)
+	if [ -z "$index" ]; then
+		error=1
+		break;
+	fi
+	output=$output$enter$del$index$del$name$del
+	index_list=$(echo "$index_list" | grep $index -v -w) # remove index
+done
+
+if [ $error == 1 ]; then
+	echo "Error in sync sesions. Check $base/sessions below"
+	echo "---"
+	cat $base/sessions
+	echo "---"
+	echo "Please sync manually."
+	echo "vi $base/sessions"
+	exit
+fi
+
+my_sessions=$(echo "${output:1}" | tr "$enter" '\n')
+save

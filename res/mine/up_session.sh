@@ -1,19 +1,13 @@
-path="$HOME/.tmux/mine"
-space="="
-del=":"
+#!/bin/bash
+source ~/.tmux/mine/sync_session.sh
+source ~/.tmux/mine/util.sh
 
-$path/sync_session.sh
-curr_name=$(tmux list-session | grep attached | cut -d ':' -f 1)
-curr=$(cat $path/sessions | grep "$curr_name" | cut -d "$del" -f 1)
-end=$(cat $path/sessions | tail -n 1 | cut -d "$del" -f 1)
-prev=$(expr $curr - 1)
+curr=$(get_curr_index)
 if [ $curr -eq "1" ]; then
-	prev=$end
+	prev_name=$(echo "$my_sessions" | tail -n 1 | cut -d "$del" -f 3)
+else
+	prev_name=$(echo "$my_sessions" | grep "$del$curr$del" -B 1 | head -n 1 | cut -d "$del" -f 3)
 fi
-while [ -z "$(cat $path/sessions | grep $prev -w)" ]
-do
-	prev=$(expr $prev - 1)
-done
-prev_name=$(cat $path/sessions | grep $prev -w | cut -d "$del" -f 2)
+
 tmux switch-client -t "$prev_name"
-tmux display-message "[$prev] #S"
+display_curr
