@@ -1,4 +1,4 @@
 #!/bin/bash
 source ~/.tmux/mine/util.sh
-sync
+sync_session
 display_curr

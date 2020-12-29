@@ -1,7 +1,7 @@
 #!/bin/bash
 source ~/.tmux/mine/util.sh
 
-sync
+sync_session
 curr=$(get_curr_name)
 first=$(echo "$my_sessions" | head -n 1 | cut -d "$del" -f 3)
 last=$(echo "$my_sessions" | tail -n 1 | cut -d "$del" -f 3)

@@ -57,7 +57,7 @@ set_name() {
 	fi
 }
 
-sync() {
+sync_session() {
 	local my_num=$(echo "$my_sessions" | wc -l)
 	local tmux_num=$(echo "$tmux_sessions" | wc -l)
 	if [ "$my_num" != "$tmux_num" ]; then
