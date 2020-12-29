@@ -6,7 +6,8 @@ prev=$((curr - 1))
 result=$(get_name $prev)
 
 move_session() {
-	set_index $(get_name $1) $2
+	set_index "$(get_name $1)" $2
+
 }
 
 swap_session() {
@@ -21,10 +22,10 @@ if [ -z "$result" -a "$curr" -ne "1" ]; then
 else
 	if [ $curr -eq "1" ]; then
 		IFS=$'\n'
-		for v in $(echo "$my_sessions" | sort -r)
+		for v in $(echo "$my_sessions" | cut -d "$del" -f 2 | sort -nr)
 		do
 			swap_session $v 1
-#			echo "swap $v to $1"
+#			echo "swap $v to 1"
 		done
 	else
 		swap_session $curr $prev

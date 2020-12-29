@@ -3,7 +3,7 @@ source ~/.tmux/mine/util.sh
 
 error=0
 output=""
-index_list=$(seq $tmux_session_num)
+index_list=$(seq $(echo "$tmux_sessions" | wc -l))
 new_session_list=()
 
 IFS=$'\n'
@@ -16,12 +16,16 @@ do
 	fi
 	output=$output$enter$del$index$del$name$del
 	index_list=$(echo "$index_list" | grep $index -v -w) # remove index
+	if [ $(echo "$my_sessions" | grep "$del$index$del" | wc -l) != "1" ]; then # check double index
+		error=1
+		break;
+	fi
 done
 
 for name in ${new_session_list[@]}
 do
 	index=$(echo "$index_list" | head -n 1)
-	if [ -z "$index" ]; then
+	if [ -z "$index" ]; then # if no index left to assign
 		error=1
 		break;
 	fi
@@ -30,9 +34,9 @@ do
 done
 
 if [ $error == 1 ]; then
-	echo "Error in sync sesions. Check $base/sessions below"
+	echo "Error in sync sessions. Check $base/sessions below"
 	echo "---"
-	cat $base/sessions
+	cat $base/sessions | tr "$enter" '\n'
 	echo "---"
 	echo "Please sync manually."
 	echo "vi $base/sessions"

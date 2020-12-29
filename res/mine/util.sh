@@ -1,13 +1,9 @@
 base="$HOME/.tmux/mine"
 enter=';'
 del=':'
-del2='='
 
 tmux_sessions=$(tmux list-sessions | cut -d ':' -f 1 )
 my_sessions=$(cat $base/sessions | tr "$enter" '\n')
-
-tmux_session_num=$(echo "$tmux_sessions" | wc -l)
-my_session_num=$(echo "$my_sessions" | wc -l)
 
 # sort and save 
 save() {
@@ -26,9 +22,11 @@ get_index() {
 set_index() {
 	local name=$1 
 	local newindex=$2
-	local output=$(echo "$my_sessions" | grep $del$name$del -v)
-	local new="$del$newindex$del$name$del"	
-	my_sessions=$(echo "$output$enter$new" | tr "$enter" '\n')
+	local output=$(echo "$my_sessions" | grep "$del$name$del" -v)
+	local new="$del$newindex$del$name$del"
+	if [ "$name" != "" ]; then
+		my_sessions=$(echo "$output$enter$new" | tr "$enter" '\n')
+	fi
 }
 
 # return : name
@@ -52,9 +50,19 @@ get_name() {
 set_name() {
 	local index=$1
 	local newname=$2
-	local output=$(echo "$my_sessions" | grep $del$index$del -v)
+	local output=$(echo "$my_sessions" | grep "$del$index$del" -v)
 	local new="$del$index$del$newname$del"	
-	my_sessions=$(echo "$output$enter$new" | tr "$enter" '\n')
+	if [ "$index" != "" ]; then
+		my_sessions=$(echo "$output$enter$new" | tr "$enter" '\n')
+	fi
+}
+
+sync() {
+	local my_num=$(echo "$my_sessions" | wc -l)
+	local tmux_num=$(echo "$tmux_sessions" | wc -l)
+	if [ "$my_num" != "$tmux_num" ]; then
+		source ~/.tmux/mine/sync_session.sh
+	fi
 }
 
 display_curr() {
