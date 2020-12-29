@@ -12,11 +12,12 @@ if has ("syntax")
 endif
 
 set nu
-" set showmatch
+set showmatch
+set ruler
 set mouse=a
-set title
-" set cindent
-set clipboard=unnamedplus
+set autoindent
+set cindent
+set smartindent
 
 if has('termguicolors')
         set termguicolors
