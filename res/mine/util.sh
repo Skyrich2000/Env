@@ -68,3 +68,5 @@ sync_session() {
 display_curr() {
 	tmux display-message " [$(get_curr_index)] #S"
 }
+
+

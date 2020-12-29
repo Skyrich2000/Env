@@ -2,10 +2,11 @@
 source ~/.tmux/mine/util.sh
 
 curr=$(get_curr_index)
-end=$my_session_num
+first=$(echo "$my_sessions" | head -n 1 | cut -d "$del" -f 2)
+last=$(echo "$my_sessions" | tail -n 1 | cut -d "$del" -f 2)
 next=$((curr + 1))
-if [ $curr -eq $end ]; then
-	next="1"
+if [ $curr -eq $last ]; then
+	next=$first
 fi
 result=$(get_name $next)
 
@@ -23,12 +24,12 @@ if [ -z "$result" ]; then
 	move_session $curr $next
 #	echo "move $curr to $next"
 else
-	if [ $curr -eq $end ]; then
+	if [ $curr -eq $last ]; then
 		IFS=$'\n'
 		for v in $(echo "$my_sessions" | cut -d "$del" -f 2)
 		do
-			swap_session $v $end
-#			echo "swap $v to $end"
+			swap_session $v $last
+#			echo "swap $v to $last"
 		done
 	else
 		swap_session $curr $next
