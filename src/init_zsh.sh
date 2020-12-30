@@ -16,8 +16,6 @@ install() {
 			echo -e "$C[SETTING] :: install curl$E"
 			$1 apt install -y curl
 		fi
-		echo -e "$C[SETTING] :: install language pack$E"
-		$1 apt install -y language-pack-en
 		echo -e "$C[SETTING] :: install oh-my-zsh$E"
 		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --keep-zshrc --unattended
 	fi
@@ -31,6 +29,7 @@ main() {
 	if [ "$1" == "docker" ]; then
 		config
 		install sudo
+		echo "export LC_ALL=C.UTF-8" > .zshenv
 	elif [ "$1" == "mine" ]; then
 		config
 		install sudo
