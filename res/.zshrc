@@ -101,9 +101,10 @@ diu() {
 	local shsh="zsh"
 	if [ $1 != "" ]; then
 		shsh=$2
-	else
+	fi
 	docker exec -it -u 1000 $1 $shsh
 }
+
 alias nmt="~/.norminette/norminette.rb -R CheckForbiddenSourceHeader"
 alias mmt="gcc -Wall -Werror -Wextra"
 alias cdd="cd ~/Dev"
