@@ -98,11 +98,15 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 diu() {
-	local shsh="zsh"
+	local com="zsh"
 	if [ "$2" != "" ]; then
-		shsh=$2
+		com=$2
 	fi
-	docker exec -it -u 1000 $1 $shsh
+	docker exec -it -u 1000 $1 $com
+}
+
+di() {
+	docker exec -it $1 bash
 }
 
 alias nmt="~/.norminette/norminette.rb -R CheckForbiddenSourceHeader"
@@ -110,7 +114,6 @@ alias mmt="gcc -Wall -Werror -Wextra"
 alias cdd="cd ~/Dev"
 alias cdp="cd ~/Dev/Projects"
 alias dk="docker"
-alias di="docker exec -it"
 alias dl="clear; docker ps -a"
 alias tm="tmux a #"
 
