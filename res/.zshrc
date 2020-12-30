@@ -97,13 +97,20 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+diu() {
+	local shsh="zsh"
+	if [ $1 != "" ]; then
+		shsh=$2
+	else
+	docker exec -it -u 1000 $1 $shsh
+}
 alias nmt="~/.norminette/norminette.rb -R CheckForbiddenSourceHeader"
 alias mmt="gcc -Wall -Werror -Wextra"
 alias cdd="cd ~/Dev"
 alias cdp="cd ~/Dev/Projects"
 alias dk="docker"
 alias di="docker exec -it"
-alias diu="docker exec -it -u 1000"
+alias dl="clear; docker ps -a"
 alias tm="tmux a #"
 
 # change to windows
