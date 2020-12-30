@@ -8,7 +8,7 @@ cp ~/.tmux.reset.conf ./res
 cp -rf ~/.tmux/mine ./res
 
 message=""
-if [ $1 != "" ]; then
+if [ "$1" != "" ]; then
 	message=" | $1"
 fi
 

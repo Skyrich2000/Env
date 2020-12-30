@@ -99,7 +99,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 diu() {
 	local shsh="zsh"
-	if [ $1 != "" ]; then
+	if [ "$2" != "" ]; then
 		shsh=$2
 	fi
 	docker exec -it -u 1000 $1 $shsh
