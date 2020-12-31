@@ -2,6 +2,7 @@ base="$HOME/.tmux/mine"
 enter=';'
 del=':'
 
+client=$(tmux list-clients | grep "$1" | cut -d ':' -f 1 | head -n 1)
 tmux_sessions=$(tmux list-sessions | cut -d ':' -f 1 )
 my_sessions=$(cat $base/sessions | tr "$enter" '\n')
 
@@ -14,7 +15,7 @@ save() {
 # return : index or null
 get_index() {
 	local name=$1
-	echo "$my_sessions" | grep "$del$name$del" | cut -d "$del" -f 2 | cat
+	echo "$my_sessions" | grep "$del$name$del" | cut -d "$del" -f 2
 }
 
 
@@ -31,7 +32,7 @@ set_index() {
 
 # return : name
 get_curr_name() {
-	tmux list-sessions | grep attached | cut -d ':' -f 1 | cat
+	tmux list-clients | grep "$client" | sed -e "s/.*\b: \b//g" -e "s/\b \[\b.*//g"
 }
 
 # return : index or null
@@ -43,7 +44,7 @@ get_curr_index() {
 # return : name or null
 get_name() {
 	local index=$1
-	echo "$my_sessions" | grep "$del$index$del" | cut -d "$del" -f 3 | cat
+	echo "$my_sessions" | grep "$del$index$del" | cut -d "$del" -f 3
 }
 
 # must : exists index , new name
@@ -68,5 +69,3 @@ sync_session() {
 display_curr() {
 	tmux display-message " [$(get_curr_index)] #S"
 }
-
-

@@ -1,5 +1,5 @@
 #!/bin/bash
-source ~/.tmux/mine/util.sh
+source ~/.tmux/mine/util.sh "$1"
 
 sync_session
 curr=$(get_curr_name)

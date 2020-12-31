@@ -1,5 +1,5 @@
 #!/bin/bash
-source ~/.tmux/mine/util.sh
+source ~/.tmux/mine/util.sh "$1"
 
 curr=$(get_curr_index)
 prev=$((curr - 1))
@@ -7,7 +7,6 @@ result=$(get_name $prev)
 
 move_session() {
 	set_index "$(get_name $1)" $2
-
 }
 
 swap_session() {

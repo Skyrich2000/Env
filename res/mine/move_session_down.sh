@@ -1,5 +1,5 @@
 #!/bin/bash
-source ~/.tmux/mine/util.sh
+source ~/.tmux/mine/util.sh "$1"
 
 curr=$(get_curr_index)
 first=$(echo "$my_sessions" | head -n 1 | cut -d "$del" -f 2)
