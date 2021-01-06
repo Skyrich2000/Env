@@ -117,6 +117,8 @@ alias dk="docker"
 alias dl="clear; docker ps -a"
 alias tm="tmux a #"
 
+alias gpp="g++"
+
 # change to windows
 function win {
 	sudo grub-reboot 2

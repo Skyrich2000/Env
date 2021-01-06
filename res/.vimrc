@@ -18,6 +18,7 @@ set mouse=a
 set autoindent
 set cindent
 set smartindent
+set title
 
 if has('termguicolors')
         set termguicolors
@@ -39,5 +40,5 @@ let &t_te.="\e[0 q"
 inoremap jj <esc>
 inoremap qq <esc>
 nnoremap 42h :Stdheader<enter>
-inoremap std #include <stdio.h>
+" inoremap std #include <stdio.h>
 inoremap minit int<tab>main(void)<cr>{<cr>return (0);<cr>}<cr><esc>kk0
