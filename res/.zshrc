@@ -116,6 +116,13 @@ alias cdp="cd ~/Dev/Projects"
 alias dk="docker"
 alias dl="clear; docker ps -a"
 alias tm="tmux a #"
+alias cdw="cd /home/dhuni/workspace"
+
+gborn() {
+	git add ~/Dev/Projects/Born
+	git commit -m "$1"
+	git push
+}
 
 alias gpp="g++"
 

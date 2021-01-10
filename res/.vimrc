@@ -5,6 +5,8 @@
 call plug#begin('~/.vim/plugged')
         Plug 'pbondoer/vim-42header'
         Plug 'sainnhe/sonokai'
+"         Plug 'cacharle/c_formatter_42.vim'
+"         Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 if has ("syntax")
