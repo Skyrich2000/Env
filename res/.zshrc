@@ -117,6 +117,7 @@ alias dk="docker"
 alias dl="clear; docker ps -a"
 alias tm="tmux a #"
 alias cdw="cd /home/dhuni/workspace"
+alias rn="ranger"
 
 gborn() {
 	git add ~/Dev/Projects/Born
