@@ -141,10 +141,8 @@ export CUDADIR=/usr/local/cuda-10.1
 export TERM=xterm-256color
 
 prompt_context() {
-	C=$(echo $HOME | cut -d / -f 3)
 	if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-		prompt_segment blue default "%(!.%{%F{yellow}%}.)$C"
-		#prompt_segment 39 default "%(!.%{%F{yellow}%}.)%n"
+		prompt_segment 39 default "%(!.%{%F{yellow}%}.)%n"
 	fi
 }
 
