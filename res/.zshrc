@@ -137,6 +137,9 @@ export PATH=$PATH:/usr/local/cuda-10.1/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-10.1/lib64
 export CUDADIR=/usr/local/cuda-10.1
 
+# zsh costomize
+export TERM=xterm-256color
+
 prompt_context() {
 	C=$(echo $HOME | cut -d / -f 3)
 	if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
