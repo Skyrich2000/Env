@@ -2,7 +2,7 @@ base="$HOME/.tmux/mine"
 enter=';'
 del=':'
 
-client=$(tmux list-clients | grep "$1" | cut -d ':' -f 1 | head -n 1)
+client=$(tmux list-clients | grep "$1" | cut -d ':' -f 1 | tail -n 1)
 tmux_sessions=$(tmux list-sessions | cut -d ':' -f 1 )
 my_sessions=$(cat $base/sessions | tr "$enter" '\n')
 

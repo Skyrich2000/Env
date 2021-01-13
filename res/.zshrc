@@ -136,3 +136,15 @@ function win {
 export PATH=$PATH:/usr/local/cuda-10.1/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-10.1/lib64
 export CUDADIR=/usr/local/cuda-10.1
+
+prompt_context() {
+	C=$(echo $HOME | cut -d / -f 3)
+	if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+		prompt_segment blue default "%(!.%{%F{yellow}%}.)$C"
+		#prompt_segment 39 default "%(!.%{%F{yellow}%}.)%n"
+	fi
+}
+
+prompt_dir() {
+	prompt_segment 39 $CURRENT_FG '%~'
+}
