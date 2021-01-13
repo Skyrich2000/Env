@@ -5,6 +5,8 @@
 call plug#begin('~/.vim/plugged')
         Plug 'pbondoer/vim-42header'
         Plug 'sainnhe/sonokai'
+	Plug 'preservim/nerdtree'
+" 	Plug 'junegunn/rainbow_parentheses.vim'
 "         Plug 'cacharle/c_formatter_42.vim'
 "         Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
@@ -33,6 +35,10 @@ let g:sonokai_style = 'shusia'
 " let g:sonokai_style = 'default'
 let g:sonokai_enable_italic = 1
 let g:sonokai_disable_italic_comment = 1
+let NERDTreeShowHidden=1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+" let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 
 let &t_ti.="\e[1 q"
 let &t_SI.="\e[5 q"
@@ -44,3 +50,8 @@ inoremap qq <esc>
 nnoremap 42h :Stdheader<enter>
 " inoremap std #include <stdio.h>
 inoremap minit int<tab>main(void)<cr>{<cr>return (0);<cr>}<cr><esc>kk0
+nnoremap nnn :NERDTreeToggle<enter>
+" augroup rainbow_lisp
+" 	autocmd!
+" 	autocmd FileType c,cpp RainbowParentheses
+" augroup END
