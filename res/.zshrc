@@ -125,6 +125,15 @@ gborn() {
 	git push
 }
 
+gpp() {
+	local input="input.txt"
+	if ["$2" != ""]; then
+		input=$2
+	fi
+	g++ $1
+	./a.out < $input
+}
+
 alias gpp="g++"
 
 # change to windows
