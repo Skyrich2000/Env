@@ -130,7 +130,7 @@ gpp() {
 	if ["$2" != ""]; then
 		input=$2
 	fi
-	g++ $1
+	g++ $1.cpp
 	./a.out < $input
 }
 
