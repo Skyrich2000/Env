@@ -134,8 +134,6 @@ gpp() {
 	./a.out < $input
 }
 
-alias gpp="g++"
-
 # change to windows
 function win {
 	sudo grub-reboot 2
