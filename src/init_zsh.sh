@@ -24,7 +24,7 @@ install() {
 config() {
 	cp ./res/.zshrc ~
 	cp ./res/agnoster.zsh-theme ~/.oh-my-zsh/themes/
-	cp ./res/plugins ~/.oh-my-zsh/custom/
+	cp -rf ./res/plugins ~/.oh-my-zsh/custom/
 }
 
 main() {
