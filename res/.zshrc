@@ -127,7 +127,7 @@ gborn() {
 
 gpp() {
 	local input="input.txt"
-	if ["$2" != ""]; then
+	if [ "$2" != "" ]; then
 		input=$2
 	fi
 	g++ $1.cpp
@@ -148,12 +148,12 @@ export CUDADIR=/usr/local/cuda-10.1
 # zsh costomize
 export TERM=xterm-256color
 
-prompt_context() {
-	if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-		prompt_segment blue default "%(!.%{%F{yellow}%}.)%n"
-	fi
-}
+# prompt_context() {
+# 	if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+# 		prompt_segment blue default "%(!.%{%F{yellow}%}.)%n"
+# 	fi
+# }
 
-prompt_dir() {
-	prompt_segment 39 $CURRENT_FG '%~'
-}
+# prompt_dir() {
+# 	prompt_segment 39 $CURRENT_FG '%~'
+# }

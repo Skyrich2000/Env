@@ -37,6 +37,7 @@ set softtabstop=4
 "set encoding=utf-8
 "set termencoding=utf-8
 "filetype on 
+set pastetoggle=<F9>
 
 set laststatus=2 
 set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F
@@ -64,10 +65,10 @@ let &t_te.="\e[0 q"
 inoremap jj <esc>
 inoremap qq <esc>
 nnoremap 42h :Stdheader<enter>
-inoremap minit int<tab>main(void)<cr>{<cr>return (0);<cr>}<cr><esc>kk0
-nnoremap nnn :NERDTreeFocus<CR>
-nnoremap nn :NERDTreeToggle<CR>
-nnoremap nnr :NERDTree<CR>
+inoremap minit int<tab>main(void) {<cr>return (0);<cr>}<cr><esc>kk0
+nnoremap mmm :NERDTreeFocus<CR>
+nnoremap mm :NERDTreeToggle<CR>
+nnoremap mmr :NERDTree<CR>
 
 " vim-smooth-scroll
 "noremap <silent> <c-i> :call smooth_scroll#up(&scroll, 10, 3)<CR>

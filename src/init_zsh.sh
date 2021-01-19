@@ -23,16 +23,17 @@ install() {
 
 config() {
 	cp ./res/.zshrc ~
+	cp ./res/agnoster.zsh-theme ~/.oh-my-zsh/themes/
 }
 
 main() {
 	if [ "$1" == "docker" ]; then
-		config
 		install sudo
 		echo "export LC_ALL=C.UTF-8" > ~/.zshenv
-	elif [ "$1" == "mine" ]; then
 		config
+	elif [ "$1" == "mine" ]; then
 		install sudo
+		config
 	elif [ "$1" == "cluster" ]; then
 		config
 	fi
