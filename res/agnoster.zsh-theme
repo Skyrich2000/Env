@@ -88,12 +88,12 @@ prompt_end() {
 
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
-  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+#  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
 #prompt_segment black default "%(!.%{%F{yellow}%}.)%n@%m"
-	if [ "$CUS_USER" != "huni" ]; then
+	if [ ! "$CUS_USER" = "huni" ]; then
 	    prompt_segment black default
 	fi
-  fi
+# fi
 }
 
 # Git: branch/detached head, dirty status
@@ -213,7 +213,11 @@ prompt_dir() {
 	dir_p=$(pwd | sed "s/$CUS_HOME/~/g" | awk -F / 'BEGIN {ORS="/"} { for(i=1;i<NF;i++) print substr($i,0,3) }')
 	dir_c=`basename $dir_a`
 	if [ "$dir_a" = "$HOME" ]; then
+		dir_p=""
 		dir_c="~"
+	fi
+	if [ "$dir_a" = "/" ]; then
+		dir_p=""
 	fi
 #prompt_segment blue $CURRENT_FG '%~'
   prompt_segment 235 white "%F{245}${dir_p}%F{white}${dir_c}"
