@@ -2,6 +2,7 @@ C="\e[1;31m"
 E="\e[0m"
 
 cp ~/.zshrc ./res
+cp -rf ~/.oh-my-zsh/custom/plugins ./res
 cp ~/.oh-my-zsh/themes/agnoster.zsh-theme ./res
 cp ~/.vimrc ./res
 cp ~/.tmux.conf ./res
