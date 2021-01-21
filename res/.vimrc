@@ -7,11 +7,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'sainnhe/sonokai'
 	Plug 'preservim/nerdtree'
 	Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+    Plug 'jiangmiao/auto-pairs'
 "	Plug 'xolox/vim-session'
 "	Plug 'xolox/vim-misc'
 "	Plug 'ctrlpvim/ctrlp.vim'
 "	Plug 'terryma/vim-smooth-scroll'
 " 	Plug 'junegunn/rainbow_parentheses.vim'
+" 	Plug 'Chiel92/vim-autoformat'
 "   Plug 'cacharle/c_formatter_42.vim'
 "   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
