@@ -1,13 +1,27 @@
 C="\e[1;31m"
 E="\e[0m"
 
-cp ~/.zshrc ./res
-cp -rf ~/.oh-my-zsh/custom/plugins ./res
-cp ~/.oh-my-zsh/themes/agnoster.zsh-theme ./res
-cp ~/.vimrc ./res
-cp ~/.tmux.conf ./res
-cp ~/.tmux.reset.conf ./res
-cp -rf ~/.tmux/mine ./res
+
+rm -rf ./res/zsh
+mkdir ./res/zsh
+cp ~/.zshrc ./res/zsh
+cp ~/.zshenv ./res/zsh
+cp ~/.oh-my-zsh/themes/agnoster.zsh-theme ./res/zsh
+find ~/.oh-my-zsh/custom/plugins -name ".git" -exec rm -rf {} \;
+cp -rf ~/.oh-my-zsh/custom/plugins ./res/zsh
+
+rm -rf ./res/vim
+mkdir ./res/vim
+cp ~/.vimrc ./res/vim
+find ~/.vim/plugged -name ".git" -exec rm -rf {} \;
+cp -rf ~/.vim/plugged ./res/vim
+
+rm -rf ./res/tmux
+mkdir ./res/tmux
+cp ~/.tmux.conf ./res/tmux
+cp ~/.tmux.reset.conf ./res/tmux
+find ~/.tmux/plugins -name ".git" -exec rm -rf {} \;
+cp -rf ~/.tmux/plugins ./res/tmux
 
 message=""
 if [ "$1" != "" ]; then
@@ -18,4 +32,4 @@ git add .
 git commit -m "update : $(date) $message"
 git push
 
-echo -e "$C[SETTING] :: done update$E"
+echo "$C[SETTING] :: done update$E"

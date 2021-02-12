@@ -22,8 +22,8 @@ install() {
 }
 
 config() {
-	cp ./res/.vimrc ~
-	echo -e "$C[SETTING] :: do :PlugInstall$E"
+	cp ./res/vim/.vimrc ~
+	cp -rf ./res/vim/plugged ~/.vim
 }
 
 main() {

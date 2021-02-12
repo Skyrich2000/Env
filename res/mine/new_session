@@ -1,3 +1,0 @@
-new-session
-rename-session "temp#S"
-run-shell ~/.tmux/mine/new_session_sub.sh

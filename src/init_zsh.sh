@@ -22,15 +22,15 @@ install() {
 }
 
 config() {
-	cp ./res/.zshrc ~
-	cp ./res/agnoster.zsh-theme ~/.oh-my-zsh/themes/
-	cp -rf ./res/plugins ~/.oh-my-zsh/custom/
+	cp ./res/zsh/.zshrc ~
+	cp ./res/zsh/.zshenv ~
+	cp ./res/zsh/agnoster.zsh-theme ~/.oh-my-zsh/themes/
+	cp -rf ./res/zsh/plugins ~/.oh-my-zsh/custom/
 }
 
 main() {
 	if [ "$1" == "docker" ]; then
 		install sudo
-		echo "export LC_ALL=C.UTF-8" > ~/.zshenv
 		config
 	elif [ "$1" == "mine" ]; then
 		install sudo

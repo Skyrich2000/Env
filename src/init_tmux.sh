@@ -13,10 +13,10 @@ install() {
 }
 
 config() {
-	cp ./res/.tmux.conf ~
-	cp ./res/.tmux.reset.conf ~
+	cp ./res/tmux/.tmux.conf ~
+	cp ./res/tmux/.tmux.reset.conf ~
 	mkdir ~/.tmux >/dev/null 2>&1
-	cp -rf ./res/mine ~/.tmux
+	cp -rf ./res/tmux/plugins ~/.tmux
 	tmux source-file ~/.tmux.conf
 }
 
