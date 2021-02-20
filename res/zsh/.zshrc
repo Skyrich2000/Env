@@ -151,3 +151,6 @@ export CUDADIR=/usr/local/cuda-10.1
 
 # zsh costomize
 export TERM=xterm-256color
+
+# cluster brew
+export PATH=$HOME/.brew/bin:$PATH

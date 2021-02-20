@@ -91,7 +91,9 @@ prompt_context() {
 #  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
 #prompt_segment black default "%(!.%{%F{yellow}%}.)%n@%m"
 	if [ ! "$CUS_USER" = "huni" ]; then
-	    prompt_segment black default
+		if [ ! "$CUS_USER" = "ycha" ]; then
+			prompt_segment black default
+		fi
 	fi
 # fi
 }
