@@ -6,7 +6,7 @@ rm -rf ./res/zsh
 mkdir ./res/zsh
 cp ~/.zshrc ./res/zsh
 cp ~/.zshenv ./res/zsh
-cp ~/.oh-my-zsh/themes/agnoster.zsh-theme ./res/zsh
+cp ~/.oh-my-zsh/themes/agnoster_mine.zsh-theme ./res/zsh
 find ~/.oh-my-zsh/custom/plugins -name ".git" -exec rm -rf {} \;
 cp -rf ~/.oh-my-zsh/custom/plugins ./res/zsh
 
