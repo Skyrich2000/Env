@@ -113,7 +113,7 @@ di() {
 	docker exec -it $1 bash
 }
 
-alias nmt="~/.norminette/norminette.rb -R CheckForbiddenSourceHeader"
+alias nmt="python3 -m norminette -R CheckForbiddenSourceHeader"
 alias mmt="gcc -Wall -Werror -Wextra"
 alias cdd="cd ~/Dev"
 alias cdp="cd ~/Dev/Projects"

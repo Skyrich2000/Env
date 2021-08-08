@@ -28,6 +28,7 @@ if [ "$1" != "" ]; then
 	message=" | $1"
 fi
 
+git status
 git add .
 git commit -m "update : $(date) $message"
 git push
