@@ -62,7 +62,7 @@ sync_session() {
 	local my_num=$(echo "$my_sessions" | wc -l)
 	local tmux_num=$(echo "$tmux_sessions" | wc -l)
 	if [ "$my_num" != "$tmux_num" ]; then
-		source ~/.tmux/mine/sync_session.sh
+		source ~/.tmux/plugins/mine/sync_session.sh
 	fi
 }
 
