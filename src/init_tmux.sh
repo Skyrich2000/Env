@@ -1,6 +1,17 @@
 C="\e[1;31m"
 E="\e[0m"
 
+conform() {
+	while true
+	do
+		read -p "$1 [y/n] : " yn
+		case $yn in
+			[Yy] ) echo "1"; break;;
+			[Nn] ) echo "0"; break;;
+		esac
+	done
+}
+
 command_exists() {
 	command -v "$@" >/dev/null 2>&1
 }
@@ -22,9 +33,13 @@ config() {
 
 main() {
 	if [ "$1" == "docker" ]; then
-		#install
-		#config
 		echo -e "$C[SETTING] :: recommand not to install tmux in docker container$E"
+		if [ $(conform "Continue?") -eq "1" ]; then
+			install sudo
+			config
+		else
+			printf "$C[SYSTEM] :: Canceled $E\n"
+		fi
 	elif [ "$1" == "mine" ]; then
 		install sudo
 		config
