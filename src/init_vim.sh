@@ -8,33 +8,38 @@ command_exists() {
 install() {
 	if ! command_exists vim; then
 		echo -e "$C[SETTING] :: install vim$E"
-		$1 apt install -y vim
+		sudo apt install -y vim
 	fi
 	
 	if ! [ -e "$HOME/.vim/autoload/plug.vim" ]; then
 		echo -e "$C[SETTING] :: install vim plugin$E"
 		if ! command_exists curl; then
 			echo -e "Install curl"
-			$1 apt install -y curl
+			sudo apt install -y curl
 		fi
 		curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	fi
 }
 
 config() {
-	cp ./res/vim/.vimrc ~
-	cp -rf ./res/vim/plugged ~/.vim
+	if command_exists vim; then
+		echo -e "$C[SETTING] :: config vim$E"
+		cp ./res/vim/.vimrc ~
+		cp -rf ./res/vim/plugged ~/.vim
+	else
+		echo -e "$C[SETTING] :: skip config vim$E"
+	fi
 }
 
 main() {
-	if [ "$1" == "docker" ]; then
-		install sudo
+	if [ "$1" == "ubuntu" ]; then
+		install
 		config
-	elif [ "$1" == "mine" ]; then
-		install sudo
+	elif [ "$1" == "mac" ]; then
 		config
-	elif [ "$1" == "cluster" ]; then
-		config
+	else
+		echo -e "$C[SETTING] :: wrong input$E"
+		return
 	fi
 
 	echo -e "$C[SETTING] :: done vim$E"

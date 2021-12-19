@@ -1,17 +1,6 @@
 C="\e[1;31m"
 E="\e[0m"
 
-conform() {
-	while true
-	do
-		read -p "$1 [y/n] : " yn
-		case $yn in
-			[Yy] ) echo "1"; break;;
-			[Nn] ) echo "0"; break;;
-		esac
-	done
-}
-
 command_exists() {
 	command -v "$@" >/dev/null 2>&1
 }
@@ -19,32 +8,32 @@ command_exists() {
 install() {
 	if ! command_exists tmux; then
 		echo -e "$C[SETTING] :: install tmux$E"
-		$1 apt install -y tmux
+		sudo apt install -y tmux
 	fi
 }
 
 config() {
-	cp ./res/tmux/.tmux.conf ~
-	cp ./res/tmux/.tmux.reset.conf ~
-	mkdir ~/.tmux >/dev/null 2>&1
-	cp -rf ./res/tmux/plugins ~/.tmux
-	tmux source-file ~/.tmux.conf
+	if command_exists tmux; then
+		echo -e "$C[SETTING] :: config tmux$E"
+		cp ./res/tmux/.tmux.conf ~
+		cp ./res/tmux/.tmux.reset.conf ~
+		mkdir ~/.tmux >/dev/null 2>&1
+		cp -rf ./res/tmux/plugins ~/.tmux
+		tmux source-file ~/.tmux.conf
+	else
+		echo -e "$C[SETTING] :: skip config tmux$E"
+	fi
 }
 
 main() {
-	if [ "$1" == "docker" ]; then
-		echo -e "$C[SETTING] :: recommand not to install tmux in docker container$E"
-		if [ $(conform "Continue?") -eq "1" ]; then
-			install sudo
-			config
-		else
-			printf "$C[SYSTEM] :: Canceled $E\n"
-		fi
-	elif [ "$1" == "mine" ]; then
-		install sudo
+	if [ "$1" == "ubuntu" ]; then
+		install
 		config
-	elif [ "$1" == "cluster" ]; then
+	elif [ "$1" == "mac" ]; then
 		config
+	else
+		echo -e "$C[SETTING] :: wrong input!$E"
+		return
 	fi
 
 	echo -e "$C[SETTING] :: done tmux$E"

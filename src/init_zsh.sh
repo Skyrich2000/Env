@@ -22,21 +22,26 @@ install() {
 }
 
 config() {
-	cp ./res/zsh/.zshrc ~
-	cp ./res/zsh/.zshenv ~
-	cp ./res/zsh/agnoster_mine.zsh-theme ~/.oh-my-zsh/themes/
-	cp -rf ./res/zsh/plugins ~/.oh-my-zsh/custom/
+	if [ -d "$ZSH" ]; then
+		echo -e "$C[SETTING] :: config zsh$E"
+		cp ./res/zsh/.zshrc ~
+		cp ./res/zsh/.zshenv ~
+		cp ./res/zsh/agnoster_mine.zsh-theme ~/.oh-my-zsh/themes/
+		cp -rf ./res/zsh/plugins ~/.oh-my-zsh/custom/
+	else
+		echo -e "$C[SETTING] :: skip config zsh$E"
+	fi
 }
 
 main() {
-	if [ "$1" == "docker" ]; then
-		install sudo
+	if [ "$1" == "ubuntu" ]; then
+		install
 		config
-	elif [ "$1" == "mine" ]; then
-		install sudo
+	elif [ "$1" == "mac" ]; then
 		config
-	elif [ "$1" == "cluster" ]; then
-		config
+	else
+		echo -e "$C[SETTING] :: wrong input$E"
+		return 
 	fi
 
 	echo -e "$C[SETTING] :: done zsh$E"
