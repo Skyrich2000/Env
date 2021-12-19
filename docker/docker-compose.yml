@@ -1,8 +1,9 @@
 version: "3.7"
 
 services:
-  dev:
+  42seoul:
     image: petercha2000/env:42seoul
+    container_name: 42seoul
     network_mode: host
     ports:
       - 7782:22

@@ -8,13 +8,13 @@ command_exists() {
 install() {
 	if ! command_exists zsh; then
 		echo -e "$C[SETTING] :: install zsh$E"
-		$1 apt install -y zsh
+		sudo apt install -y zsh
 	fi
 
 	if ! [ -d "$ZSH" ]; then
 		if ! command_exists curl; then
 			echo -e "$C[SETTING] :: install curl$E"
-			$1 apt install -y curl
+			sudo apt install -y curl
 		fi
 		echo -e "$C[SETTING] :: install oh-my-zsh$E"
 		sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --keep-zshrc --unattended
