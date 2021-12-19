@@ -22,15 +22,10 @@ install() {
 }
 
 config() {
-	if [ -d "$ZSH" ]; then
-		echo -e "$C[SETTING] :: config zsh$E"
-		cp ./res/zsh/.zshrc ~
-		cp ./res/zsh/.zshenv ~
-		cp ./res/zsh/agnoster_mine.zsh-theme ~/.oh-my-zsh/themes/
-		cp -rf ./res/zsh/plugins ~/.oh-my-zsh/custom/
-	else
-		echo -e "$C[SETTING] :: skip config zsh$E"
-	fi
+	cp ./res/zsh/.zshrc ~
+	cp ./res/zsh/.zshenv ~
+	cp ./res/zsh/agnoster_mine.zsh-theme ~/.oh-my-zsh/themes/
+	cp -rf ./res/zsh/plugins ~/.oh-my-zsh/custom/
 }
 
 main() {
@@ -38,7 +33,12 @@ main() {
 		install
 		config
 	elif [ "$1" == "mac" ]; then
-		config
+		if [ -d "$ZSH" ]; then
+			echo -e "$C[SETTING] :: config zsh$E"
+			config
+		else
+			echo -e "$C[SETTING] :: skip config zsh$E"
+		fi
 	else
 		echo -e "$C[SETTING] :: wrong input$E"
 		return 

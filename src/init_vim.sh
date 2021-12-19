@@ -22,13 +22,8 @@ install() {
 }
 
 config() {
-	if command_exists vim; then
-		echo -e "$C[SETTING] :: config vim$E"
-		cp ./res/vim/.vimrc ~
-		cp -rf ./res/vim/plugged ~/.vim
-	else
-		echo -e "$C[SETTING] :: skip config vim$E"
-	fi
+	cp ./res/vim/.vimrc ~
+	cp -rf ./res/vim/plugged ~/.vim
 }
 
 main() {
@@ -36,7 +31,12 @@ main() {
 		install
 		config
 	elif [ "$1" == "mac" ]; then
-		config
+		if command_exists vim; then
+			echo -e "$C[SETTING] :: config vim$E"
+			config
+		else
+			echo -e "$C[SETTING] :: skip config vim$E"
+		fi
 	else
 		echo -e "$C[SETTING] :: wrong input$E"
 		return
