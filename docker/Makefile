@@ -10,7 +10,7 @@ all		: deploy clean
 42seoul	: build push clean
 
 build	:
-	sudo docker build --no-cache -f $(FILE_1) -t $(IMAGE_1) .
+	sudo docker build -f $(FILE_1) -t $(IMAGE_1) .
 
 push	:
 	sudo docker push $(IMAGE_1)
@@ -29,5 +29,5 @@ deploy	:
 
 re		: fclean all
 
-.PHONY: all build push fclean re dist
+.PHONY: all 42seoul build push fclean re deply
 
