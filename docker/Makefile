@@ -10,7 +10,7 @@ all		: deploy clean
 42seoul	: build push clean
 
 build	:
-	sudo docker build -f $(FILE_1) -t $(IMAGE_1) .
+	sudo docker build -f $(FILE_1) -t $(IMAGE_1) --platform linux/amd64 .
 
 push	:
 	sudo docker push $(IMAGE_1)
