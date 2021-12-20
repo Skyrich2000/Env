@@ -4,6 +4,10 @@ services:
   42seoul:
     image: petercha2000/env:42seoul
     container_name: 42seoul
+    build:
+      context: .
+      dockerfile: 42seoul.Dockerfile
+    platform: linux/amd64
     ports:
       - 7782:22
     volumes:

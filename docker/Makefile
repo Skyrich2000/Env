@@ -1,8 +1,3 @@
-# Vars =========================
-
-FILE_1		=	42seoul.Dockerfile
-IMAGE_1		=	petercha2000/env:42seoul
-
 # Rules =========================
 
 all		: deploy clean
@@ -10,10 +5,10 @@ all		: deploy clean
 42seoul	: build push clean
 
 build	:
-	sudo docker build -f $(FILE_1) -t $(IMAGE_1) --platform linux/amd64 .
+	sudo docker-compose build
 
 push	:
-	sudo docker push $(IMAGE_1)
+	sudo docker-compose push
 
 clean	:
 	@sudo docker rmi $(shell (sudo docker images --filter "dangling=true" -q --no-trunc)) 2>/dev/null | cat
