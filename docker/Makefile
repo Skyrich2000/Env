@@ -1,3 +1,7 @@
+# Vars ==========================
+
+IMAGES	=	petercha2000/env:42seoul
+
 # Rules =========================
 
 all		: deploy clean
@@ -16,7 +20,7 @@ clean	:
 fclean	: clean
 	sudo docker-compose -p Env down
 	sudo docker-compose -p Env rm
-	sudo docker rmi $(IMAGE_1)
+	sudo docker rmi $(IMAGES)
 
 deploy	:
 	sudo docker-compose pull
