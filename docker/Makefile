@@ -1,5 +1,6 @@
 # Vars ==========================
 
+PROJECT	=	Env
 IMAGES	=	petercha2000/env:42seoul
 
 # Rules =========================
@@ -18,13 +19,13 @@ clean	:
 	@sudo docker rmi $(shell (sudo docker images --filter "dangling=true" -q --no-trunc)) 2>/dev/null | cat
 
 fclean	: clean
-	sudo docker-compose -p Env down
-	sudo docker-compose -p Env rm
+	sudo docker-compose -p $(PROJECT) down
+	sudo docker-compose -p $(PROJECT) rm
 	sudo docker rmi $(IMAGES)
 
 deploy	:
 	sudo docker-compose pull
-	sudo docker-compose -p Env up -d
+	sudo docker-compose -p $(PROJECT) up -d
 
 re		: fclean all
 
