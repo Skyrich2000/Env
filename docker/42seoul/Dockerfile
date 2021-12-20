@@ -3,9 +3,10 @@ FROM ubuntu
 # Env Setting =============================================
 ENV USER=dhuni
 ENV UID=1000
-ENV DEBIAN_FRONTEND="noninteractive"
 
 # Root Setting ============================================
+ENV DEBIAN_FRONTEND="noninteractive"
+RUN apt update
 
 # Setup User
 RUN useradd -m $USER -u $UID \
@@ -14,15 +15,13 @@ RUN useradd -m $USER -u $UID \
 	&& chown -R $USER:$USER /home/$USER
 
 # Setup Sudo
-RUN apt update \
-	&& apt install -y sudo \
+RUN apt install -y sudo \
 	&& adduser $USER sudo \
 	&& echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Setup SSH
 COPY ./src/authorized_keys_docker /home/$USER/.ssh/authorized_keys
-RUN apt update \
-	&& apt install -y openssh-server \
+RUN apt install -y openssh-server \
 	&& mkdir -p /var/run/sshd \
 	&& sed -i "s/^.*PubkeyAuthentication.*$/PubkeyAuthentication yes/" /etc/ssh/sshd_config \
 	&& sed -i "s/^.*PasswordAuthentication.*$/PasswordAuthentication no/" /etc/ssh/sshd_config \
@@ -30,8 +29,7 @@ RUN apt update \
 	&& chmod 700 /home/$USER/.ssh
 
 # Setup Tools
-RUN apt update \
-	&& apt install -y build-essential \
+RUN apt install -y build-essential \
 					  net-tools
 
 # User Setting ============================================
@@ -39,8 +37,7 @@ USER $USER
 WORKDIR /home/$USER
 
 # Setup myenv
-RUN sudo apt update \
-	&& sudo apt install -y git \
+RUN sudo apt install -y git \
 	&& git clone https://github.com/skyrich2000/env /home/$USER/.myenv \
 	&& cd /home/$USER/.myenv \
 	&& bash apply_ubuntu.sh \
