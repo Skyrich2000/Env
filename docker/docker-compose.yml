@@ -12,3 +12,4 @@ services:
       - 7782:22
     volumes:
       - ~/Dev/Projects:/home/dhuni/Dev/Projects
+    restart: always
