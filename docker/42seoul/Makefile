@@ -1,27 +1,25 @@
 # Vars ==========================
 
-PROJECT	=	Env
-IMAGES	=	petercha2000/env:42seoul
+PROJECT	=	42seoul
+IMAGE	=	petercha2000/env:42seoul
 
 # Rules =========================
 
-all		: deploy clean
+all		: build clean
 
-42seoul	: build push clean
+run		: deploy clean
 
 build	:
-	sudo docker-compose build
-
-push	:
-	sudo docker-compose push
+	docker buildx build --platform linux/arm64,linux/amd64 --push -t $(IMAGE) .
 
 clean	:
 	@sudo docker rmi $(shell (sudo docker images --filter "dangling=true" -q --no-trunc)) 2>/dev/null | cat
+	@sudo docker rm -f $(shell (sudo docker ps | grep buildx | cut -d " " -f 1 )) 2> /dev/null | cat
 
 fclean	: clean
 	sudo docker-compose -p $(PROJECT) down
 	sudo docker-compose -p $(PROJECT) rm
-	sudo docker rmi $(IMAGES)
+	sudo docker rmi $(IMAGE)
 
 deploy	:
 	sudo docker-compose pull
@@ -29,5 +27,4 @@ deploy	:
 
 re		: fclean all
 
-.PHONY: all 42seoul build push fclean re deply
-
+.PHONY: all run build fclean re deply

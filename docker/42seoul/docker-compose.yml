@@ -1,15 +1,13 @@
 version: "3.7"
 
 services:
-  42seoul:
+  dev:
     image: petercha2000/env:42seoul
     container_name: 42seoul
-    build:
-      context: .
-      dockerfile: 42seoul.Dockerfile
-    platform: linux/amd64
-    ports:
-      - 7782:22
     volumes:
       - ~/Dev/Projects:/home/dhuni/Dev/Projects
+    network_mode: host
+    ports:
+      - 7782:22
+      - 9900-9999:9900-9999
     restart: always
