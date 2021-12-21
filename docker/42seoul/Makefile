@@ -10,7 +10,7 @@ all		: build clean
 run		: deploy clean
 
 build	:
-	docker buildx build --platform linux/arm64,linux/amd64 --push -t $(IMAGE) .
+	docker buildx build --platform linux/arm64,linux/amd64 --push --no-cache -t $(IMAGE) .
 
 clean	:
 	@sudo docker rmi $(shell (sudo docker images --filter "dangling=true" -q --no-trunc)) 2>/dev/null | cat
