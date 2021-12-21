@@ -8,6 +8,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'preservim/nerdtree'
 	Plug 'mg979/vim-visual-multi', {'branch': 'master'}
     Plug 'jiangmiao/auto-pairs'
+	Plug 'ekalinin/dockerfile.vim'
 "	Plug 'xolox/vim-session'
 "	Plug 'xolox/vim-misc'
 "	Plug 'ctrlpvim/ctrlp.vim'
