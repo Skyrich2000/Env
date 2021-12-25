@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+    nginx:
+        image: nginx
+        container_name: web_gate
+        restart: always
+        stdin_open: true
+        tty: true
+        volumes:
+            - ./src/conf.d:/etc/nginx/conf.d
+            - ~/Dev/DevTool/Ssl:/etc/nginx/ssl
+        networks:
+            - web_gate
+            - tcp_gate
+
+networks:
+    web_gate:
+        driver: bridge
+        external: true
+    tcp_gate:
+        driver: bridge
+        external: true

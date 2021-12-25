@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+    nginx:
+        image: tcp_gate
+        build:
+            context: .
+        container_name: tcp_gate
+        restart: always
+        stdin_open: true
+        tty: true
+        ports:
+            - 7780:7780
+            - 7782:7782
+            - 9900-9999:9900-9999
+        volumes:
+            - ./src/conf.d:/etc/nginx/conf.d
+        networks:
+            - tcp_gate
+        privileged: true
+
+networks:
+    tcp_gate:
+        driver: bridge
+        external: true
