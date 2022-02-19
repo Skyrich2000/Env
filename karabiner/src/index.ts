@@ -14,6 +14,7 @@ const internal: Modification = new Modification(
   Rules(internalConfig),
 );
 
+// https://karabiner-elements.pqrs.org/docs/json/external-json-generators/
 const base64string = Buffer.from(JSON.stringify(varmilo)).toString('base64');
 let url = `karabiner://karabiner/assets/complex_modifications/import?url=data:application/json;charset=utf-8;base64,${base64string}`;
 exec(`open "${url}"`);
