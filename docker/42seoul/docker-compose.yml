@@ -1,12 +1,16 @@
 version: "3.7"
 
 services:
-  dev:
-    image: petercha2000/env:42seoul
-    container_name: 42seoul
-    volumes:
-      - ~/Dev/Projects:/home/dhuni/Dev/Projects
-    ports:
-      - 7782:22
-      - 9900-9999:9900-9999
-    restart: always
+    dev:
+        image: petercha2000/env:42seoul
+        container_name: 42seoul
+        restart: always
+        volumes:
+            - ~/Dev/Projects:/home/dhuni/Dev/Projects
+        networks:
+            - tcp_gate
+
+networks:
+    tcp_gate:
+        driver: bridge
+        external: true
