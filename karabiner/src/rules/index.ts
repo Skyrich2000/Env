@@ -6,6 +6,8 @@ import DesktopMove from './Desktop';
 import NewWindow from './NewWindow';
 import { Config } from 'src/config/Config';
 import { Rule } from 'src/types/Rule';
+import AltCommandMove from './AltCommandMove';
+import AltMove from './AltMove';
 
 export default (config: Config): Rule[] => {
   const rules = [
@@ -15,6 +17,8 @@ export default (config: Config): Rule[] => {
     FastMove,
     DesktopMove,
     NewWindow,
+    AltMove,
+    AltCommandMove,
   ];
 
   return rules.map((rule) => rule(config));
