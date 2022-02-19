@@ -1,0 +1,23 @@
+{
+  "name": "ycha-karabiner-settings",
+  "version": "0.0.0",
+  "description": "",
+  "main": "build/src/index.js",
+  "private": true,
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "compile": "tsc -w",
+    "start": "tsc && node build/index.js"
+  },
+  "devDependencies": {
+    "@types/node": "^14.11.2",
+    "typescript": "^4.0.3"
+  },
+  "dependencies": {
+    "@types/dotenv": "^8.2.0",
+    "dotenv": "^16.0.0"
+  }
+}
