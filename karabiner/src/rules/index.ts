@@ -8,6 +8,7 @@ import { Config } from 'src/config/Config';
 import { Rule } from 'src/types/Rule';
 import AltCommandMove from './AltCommandMove';
 import AltMove from './AltMove';
+import TextStyle from './TextStyle';
 
 export default (config: Config): Rule[] => {
   const rules = [
@@ -19,6 +20,7 @@ export default (config: Config): Rule[] => {
     NewWindow,
     AltMove,
     AltCommandMove,
+    TextStyle,
   ];
 
   return rules.map((rule) => rule(config));
