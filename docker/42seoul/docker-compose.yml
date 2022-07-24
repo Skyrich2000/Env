@@ -5,12 +5,7 @@ services:
         image: petercha2000/env:42seoul
         container_name: 42seoul
         restart: always
+        ports:
+            - 9922:9922
         volumes:
             - ~/Dev/Projects:/home/dhuni/Dev/Projects
-        networks:
-            - tcp_gate
-
-networks:
-    tcp_gate:
-        driver: bridge
-        external: true

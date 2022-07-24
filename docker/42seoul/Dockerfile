@@ -47,7 +47,7 @@ RUN sudo apt install -y git \
 
 # Setup Node
 RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | /usr/bin/zsh \
-	&& /usr/bin/zsh -c "source ~/.zshrc && nvm install 14.17.6"
+	&& /usr/bin/zsh -c "source ~/.zshrc && nvm install 14.17.6" \
 	&& /usr/bin/zsh -c "source ~/.zshrc && npm install -g npm@8.1.4"
 
 # Setup norminette
