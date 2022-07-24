@@ -53,6 +53,4 @@ RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | 
 # Setup norminette
 RUN python3 -m pip install norminette
 
-EXPOSE 22
-
 CMD ["sudo", "/usr/sbin/sshd", "-D"]
