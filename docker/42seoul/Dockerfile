@@ -30,7 +30,9 @@ RUN apt install -y openssh-server \
 
 # Setup Tools
 RUN apt install -y build-essential \
-					  net-tools
+					  net-tools \
+					  libreadline-dev \
+					  python3-pip
 
 # User Setting ============================================
 USER $USER
@@ -46,6 +48,10 @@ RUN sudo apt install -y git \
 # Setup Node
 RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | /usr/bin/zsh \
 	&& /usr/bin/zsh -c "source ~/.zshrc && nvm install 14.17.6"
+	&& /usr/bin/zsh -c "source ~/.zshrc && npm install -g npm@8.1.4"
+
+# Setup norminette
+RUN python3 -m pip install norminette
 
 EXPOSE 22
 
