@@ -6,6 +6,6 @@ services:
         container_name: 42seoul
         restart: always
         ports:
-            - 9922:9922
+            - 9922:22
         volumes:
             - ~/Dev/Projects:/home/dhuni/Dev/Projects
